@@ -5,7 +5,6 @@ values (i.e. 999).
 
 """
 import numpy as np
-import pandas as pd
 
 
 def _all_close_to_first(x, rtol=1e-5, atol=1e-8):
@@ -95,10 +94,11 @@ def stale_values_round(x, decimals=3, window=4):
     rounded to `decimals` decimal places.
 
     This function is more aggressive than :py:func:`stale_values_diff`
-    in that marks every value in a repeated sequence as
+    in that every value in a repeated sequence is marked as
     stale. :py:func:`stale_values_diff` only marks values as stale
-    when there have been at least `window` preceeding instances of the
-    same value.
+    when there have been at least `window` preceding instances of the
+    same value (the first `window`-1 values in the sequence are not
+    marked as stale).
 
     Parameters
     ----------
